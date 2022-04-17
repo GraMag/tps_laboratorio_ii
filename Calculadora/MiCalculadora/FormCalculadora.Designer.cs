@@ -29,7 +29,7 @@ namespace MiCalculadora
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCalculadora));
             this.btnOperar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -38,17 +38,22 @@ namespace MiCalculadora
             this.textNumero1 = new System.Windows.Forms.TextBox();
             this.textNumero2 = new System.Windows.Forms.TextBox();
             this.cmbOperacion = new System.Windows.Forms.ComboBox();
-            this.lblRessultado = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblResultado = new System.Windows.Forms.Label();
             this.lstResultados = new System.Windows.Forms.RichTextBox();
-            this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBoxSol = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLuna = new System.Windows.Forms.PictureBox();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLuna)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOperar
             // 
+            this.btnOperar.ForeColor = System.Drawing.Color.Snow;
             this.btnOperar.Location = new System.Drawing.Point(10, 206);
             this.btnOperar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOperar.Name = "btnOperar";
@@ -60,6 +65,7 @@ namespace MiCalculadora
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.ForeColor = System.Drawing.Color.Snow;
             this.btnLimpiar.Location = new System.Drawing.Point(203, 206);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLimpiar.Name = "btnLimpiar";
@@ -71,6 +77,7 @@ namespace MiCalculadora
             // 
             // btnCerrar
             // 
+            this.btnCerrar.ForeColor = System.Drawing.Color.Snow;
             this.btnCerrar.Location = new System.Drawing.Point(307, 206);
             this.btnCerrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCerrar.Name = "btnCerrar";
@@ -82,6 +89,7 @@ namespace MiCalculadora
             // 
             // btnConvertirABinario
             // 
+            this.btnConvertirABinario.ForeColor = System.Drawing.Color.Snow;
             this.btnConvertirABinario.Location = new System.Drawing.Point(10, 256);
             this.btnConvertirABinario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConvertirABinario.Name = "btnConvertirABinario";
@@ -93,6 +101,7 @@ namespace MiCalculadora
             // 
             // btnConvertirADecimal
             // 
+            this.btnConvertirADecimal.ForeColor = System.Drawing.Color.Snow;
             this.btnConvertirADecimal.Location = new System.Drawing.Point(256, 256);
             this.btnConvertirADecimal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConvertirADecimal.Name = "btnConvertirADecimal";
@@ -137,59 +146,99 @@ namespace MiCalculadora
             this.cmbOperacion.Size = new System.Drawing.Size(99, 40);
             this.cmbOperacion.TabIndex = 1;
             // 
-            // lblRessultado
+            // lblResultado
             // 
-            this.lblRessultado.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRessultado.Location = new System.Drawing.Point(10, 46);
-            this.lblRessultado.Name = "lblRessultado";
-            this.lblRessultado.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblRessultado.Size = new System.Drawing.Size(484, 45);
-            this.lblRessultado.TabIndex = 8;
-            this.lblRessultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 48);
-            // 
-            // nuevoToolStripMenuItem
-            // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.nuevoToolStripMenuItem.Text = "Nuevo";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.lblResultado.BackColor = System.Drawing.Color.Transparent;
+            this.lblResultado.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblResultado.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblResultado.Location = new System.Drawing.Point(11, 50);
+            this.lblResultado.Name = "lblResultado";
+            this.lblResultado.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblResultado.Size = new System.Drawing.Size(484, 45);
+            this.lblResultado.TabIndex = 8;
+            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lstResultados
             // 
-            this.lstResultados.Location = new System.Drawing.Point(502, 9);
+            this.lstResultados.BackColor = System.Drawing.SystemColors.Window;
+            this.lstResultados.Enabled = false;
+            this.lstResultados.Location = new System.Drawing.Point(502, 26);
             this.lstResultados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstResultados.Name = "lstResultados";
-            this.lstResultados.Size = new System.Drawing.Size(188, 320);
+            this.lstResultados.Size = new System.Drawing.Size(188, 303);
             this.lstResultados.TabIndex = 9;
             this.lstResultados.Text = "";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(700, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem1,
+            this.salirToolStripMenuItem1});
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // nuevoToolStripMenuItem1
+            // 
+            this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
+            this.nuevoToolStripMenuItem1.Text = "Nuevo";
+            this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
+            // 
+            // salirToolStripMenuItem1
+            // 
+            this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
+            this.salirToolStripMenuItem1.Text = "Salir";
+            this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
+            // 
+            // pictureBoxSol
+            // 
+            this.pictureBoxSol.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxSol.BackgroundImage")));
+            this.pictureBoxSol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxSol.Location = new System.Drawing.Point(663, 0);
+            this.pictureBoxSol.Name = "pictureBoxSol";
+            this.pictureBoxSol.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxSol.TabIndex = 11;
+            this.pictureBoxSol.TabStop = false;
+            this.pictureBoxSol.Click += new System.EventHandler(this.pictureBoxSol_Click);
+            // 
+            // pictureBoxLuna
+            // 
+            this.pictureBoxLuna.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLuna.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxLuna.BackgroundImage")));
+            this.pictureBoxLuna.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxLuna.Location = new System.Drawing.Point(663, 0);
+            this.pictureBoxLuna.Name = "pictureBoxLuna";
+            this.pictureBoxLuna.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxLuna.TabIndex = 12;
+            this.pictureBoxLuna.TabStop = false;
+            this.pictureBoxLuna.Click += new System.EventHandler(this.pictureBoxLuna_Click);
             // 
             // FormCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(700, 338);
+            this.Controls.Add(this.pictureBoxLuna);
+            this.Controls.Add(this.pictureBoxSol);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lstResultados);
-            this.Controls.Add(this.lblRessultado);
+            this.Controls.Add(this.lblResultado);
             this.Controls.Add(this.cmbOperacion);
             this.Controls.Add(this.textNumero2);
             this.Controls.Add(this.textNumero1);
@@ -199,6 +248,8 @@ namespace MiCalculadora
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnOperar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -207,7 +258,10 @@ namespace MiCalculadora
             this.Text = "Calculadora de Magali Gracia del curso 2X";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCalculadora_FormClosing);
             this.Load += new System.EventHandler(this.FormCalculadora_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLuna)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,12 +277,14 @@ namespace MiCalculadora
         private System.Windows.Forms.TextBox textNumero1;
         private System.Windows.Forms.TextBox textNumero2;
         private System.Windows.Forms.ComboBox cmbOperacion;
-        private System.Windows.Forms.Label lblRessultado;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Label lblResultado;
         private System.Windows.Forms.RichTextBox lstResultados;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
+        private System.Windows.Forms.PictureBox pictureBoxSol;
+        private System.Windows.Forms.PictureBox pictureBoxLuna;
     }
 }
 

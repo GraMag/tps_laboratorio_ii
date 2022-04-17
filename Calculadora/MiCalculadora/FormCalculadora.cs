@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Entidades;
 
@@ -19,6 +20,7 @@ namespace MiCalculadora
         private void FormCalculadora_Load(object sender, EventArgs e)
         {
             this.Limpiar();
+            this.ModoDia();
         }
 
         /// <summary>
@@ -31,13 +33,20 @@ namespace MiCalculadora
             string num1 = textNumero1.Text;
             string num2 = textNumero2.Text;
             string operador = cmbOperacion.Text;
-            
-            lblRessultado.Text = Operar(num1, num2, operador).ToString();
 
-            num1 = string.IsNullOrWhiteSpace(num1) ? "0" : num1;
-            num2 = string.IsNullOrWhiteSpace(num2) ? "0" : num2;
-            operador = string.IsNullOrWhiteSpace(operador) ? "+" : operador;
-            lstResultados.AppendText($"{num1} {operador} {num2} = {lblRessultado.Text}\n");
+            string resultado = Operar(num1, num2, operador).ToString();
+
+            lblResultado.Text 
+                = (operador == "/" && resultado == double.MinValue.ToString())
+                ? "No se puede dividir por 0" 
+                : resultado;
+
+            double numero;
+            if (double.TryParse(num1, out numero) && double.TryParse(num2, out numero))
+            {
+                operador = string.IsNullOrWhiteSpace(operador) ? "+" : operador;
+                lstResultados.AppendText($"{num1} {operador} {num2} = {resultado}\n");
+            }
 
             SwitchearBotones(true);
         }
@@ -69,8 +78,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            string decimalNum = lblRessultado.Text;
-            lblRessultado.Text = Operando.DecimalBinario(decimalNum);
+            string decimalNum = lblResultado.Text;
+            lblResultado.Text = new Operando().DecimalBinario(decimalNum);
 
             SwitchearBotones(false);
         }
@@ -82,8 +91,8 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
-            string binariolNum = lblRessultado.Text;
-            lblRessultado.Text = Operando.BinarioDecimal(binariolNum);
+            string binariolNum = lblResultado.Text;
+            lblResultado.Text = new Operando().BinarioDecimal(binariolNum);
 
             SwitchearBotones(true);
 
@@ -96,7 +105,7 @@ namespace MiCalculadora
         {
             this.textNumero1.Clear();
             this.textNumero2.Clear();
-            this.lblRessultado.Text = String.Empty;
+            this.lblResultado.Text = String.Empty;
             this.cmbOperacion.SelectedIndex = 0;
             this.btnConvertirABinario.Enabled = false;
             this.btnConvertirADecimal.Enabled = false;
@@ -133,8 +142,58 @@ namespace MiCalculadora
         /// <param name="status"></param>
         private void SwitchearBotones(bool status)
         {
-            this.btnConvertirABinario.Enabled = status ? true  : false;
-            this.btnConvertirADecimal.Enabled = status ? false : true ;
+            this.btnConvertirABinario.Enabled = status;
+            this.btnConvertirADecimal.Enabled = !status;
+        }
+
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+        }
+
+        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ModoNoche()
+        {
+            archivoToolStripMenuItem.ForeColor = Color.White;
+            lblResultado.ForeColor = Color.Snow;
+            pictureBoxSol.Visible = true;
+            pictureBoxLuna.Visible = false;
+            Image fondo = Image.FromFile(@"..\..\..\..\img\noche.jpg");
+            this.BackgroundImage = fondo;
+            this.btnOperar.BackColor = Color.MidnightBlue;
+            this.btnLimpiar.BackColor = Color.MidnightBlue;
+            this.btnCerrar.BackColor = Color.MidnightBlue;
+            this.btnConvertirABinario.BackColor = Color.MidnightBlue;
+            this.btnConvertirADecimal.BackColor = Color.MidnightBlue;
+        }
+
+        private void ModoDia()
+        {
+            archivoToolStripMenuItem.ForeColor = Color.White;
+            lblResultado.ForeColor = Color.Snow;
+            pictureBoxSol.Visible = false;
+            pictureBoxLuna.Visible = true;
+            Image fondo = Image.FromFile(@"..\..\..\..\img\dia.jpg");
+            this.BackgroundImage = fondo;
+            this.btnOperar.BackColor = Color.YellowGreen;
+            this.btnLimpiar.BackColor = Color.YellowGreen;
+            this.btnCerrar.BackColor = Color.YellowGreen;
+            this.btnConvertirABinario.BackColor = Color.YellowGreen;
+            this.btnConvertirADecimal.BackColor = Color.YellowGreen;
+        }
+
+        private void pictureBoxLuna_Click(object sender, EventArgs e)
+        {
+            ModoNoche();
+        }
+
+        private void pictureBoxSol_Click(object sender, EventArgs e)
+        {
+            ModoDia();
         }
     }
 }

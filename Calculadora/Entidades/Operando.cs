@@ -7,17 +7,27 @@ namespace Entidades
     {
         private double numero;
 
+        /// <summary>
+        /// Constructor por defecto
+        /// </summary>
         public Operando()
+            :this(0)
         {
-            this.numero = 0;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="numero"></param>
         public Operando(double numero)
-            : this()
         {
              this.numero = numero;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="strNumero"></param>
         public Operando(string strNumero)
             :this()
         {
@@ -25,7 +35,9 @@ namespace Entidades
         }
 
 
-
+        /// <summary>
+        /// Setter del numero
+        /// </summary>
         private string Numero
         {
             set
@@ -34,7 +46,12 @@ namespace Entidades
             }
         }
 
-        public static string BinarioDecimal(string binario)
+        /// <summary>
+        /// Convierte un numero de binario a decimal
+        /// </summary>
+        /// <param name="binario"></param>
+        /// <returns>Numero en decimal. Valor default: "Valor invalido"</returns>
+        public string BinarioDecimal(string binario)
         {
             string resultado = "Valor invalido";
             if (EsBinario(binario))
@@ -51,25 +68,34 @@ namespace Entidades
             return resultado;
         }
 
-        public static string DecimalBinario(string numero)
+        /// <summary>
+        /// Convierte un numero de binario a decimal
+        /// </summary>
+        /// <param name="binario"></param>
+        /// <returns>Numero en decimal. Valor default: "Valor invalido"</returns>
+        public string DecimalBinario(string numero)
         {
             double.TryParse(numero, out double resultado);
             return DecimalBinario(resultado);
         }
 
-        public static string DecimalBinario(double numero)
+        /// <summary>
+        /// Convierte un numero de decimal binario
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns>Numero en binario. Valor default: "Valor invalido"</returns>
+        public string DecimalBinario(double numero)
         {
             double numeroEntero = Math.Abs(numero);
-            if (numero > 0)
+            if (numeroEntero > 0)
             {
-                StringBuilder numeroBinario = new StringBuilder();
-                while (numeroEntero > 1)
+                StringBuilder numeroBinario = new();
+                do
                 {
-                    numeroBinario.Insert(0, numeroEntero % 2);
+                    numeroBinario.Insert(0, (int)numeroEntero % 2);
                     numeroEntero /= 2;
-                }
-                numeroBinario.Insert(0, "1");
-                return numeroBinario.ToString();
+                } while (numeroEntero >= 1);
+                    return numeroBinario.ToString();
             }
             return "Valor invalido";
         }
@@ -79,7 +105,7 @@ namespace Entidades
         /// </summary>
         /// <param name="binario"></param>
         /// <returns>TRUE si es binario, FALSE si no lo es</returns>
-        private static bool EsBinario(string binario)
+        private bool EsBinario(string binario)
         {
             foreach(char digito in binario){
                 if(!(digito == '0' || digito == '1'))
@@ -97,6 +123,7 @@ namespace Entidades
         /// <returns>El numero ingresado. Si no es un numero retorna 0</returns>
         private static double ValidarOperando(string strNumero)
         {
+            strNumero = strNumero.Replace(".", ",");
             double.TryParse(strNumero, out double numero);
             return numero;
         }

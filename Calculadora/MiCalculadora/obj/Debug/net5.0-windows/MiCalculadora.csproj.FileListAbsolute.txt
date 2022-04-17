@@ -40,3 +40,4 @@ C:\Users\magali.gracia\Documents\TUP\2022\tps_laboratorio_ii\Calculadora\MiCalcu
 C:\Users\magali.gracia\Documents\TUP\2022\tps_laboratorio_ii\Calculadora\MiCalculadora\obj\Debug\net5.0-windows\ref\MiCalculadora.dll
 C:\Users\magali.gracia\Documents\TUP\2022\tps_laboratorio_ii\Calculadora\MiCalculadora\obj\Debug\net5.0-windows\MiCalculadora.pdb
 C:\Users\magali.gracia\Documents\TUP\2022\tps_laboratorio_ii\Calculadora\MiCalculadora\obj\Debug\net5.0-windows\MiCalculadora.genruntimeconfig.cache
+C:\Users\magali.gracia\Documents\TUP\2022\tps_laboratorio_ii\Calculadora\MiCalculadora\obj\Debug\net5.0-windows\MiCalculadora.Properties.Resources.resources
